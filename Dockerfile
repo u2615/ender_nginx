@@ -121,7 +121,8 @@ ENV ACCESSLOG=/var/log/nginx/access.log \
     TIMEOUT=60s \
     WORKER_CONNECTIONS=1024 \
     LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib \
-    SSL_VERIFY=on
+    SSL_VERIFY=on \
+    WWW_ROOT=/srv/www
 #SSL_CERT_KEY=/etc/nginx/ssl/server.key \
 #SSL_CERT=/etc/nginx/ssl/server.crt \
 
@@ -161,7 +162,8 @@ COPY nginx/docker-entrypoint.sh /docker-entrypoint.d/40-modsec-entrypoint.sh
 RUN chmod 700 /docker-entrypoint.d/40-modsec-entrypoint.sh /set_permissions.sh
 
 RUN touch /var/run/nginx.pid
+RUN mkdir -p /srv/wwww
 RUN /set_permissions.sh && rm /set_permissions.sh
 
-RUN ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
