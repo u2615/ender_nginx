@@ -21,6 +21,7 @@ RUN apk add --no-cache --virtual .build-deps \
     bash \
     alpine-sdk \
     findutils \
+    openssl-dev \
     # for modsecurity
     pcre-dev \
     libxml2-dev \
