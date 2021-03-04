@@ -152,15 +152,15 @@ COPY --from=builder /usr/local/modsecurity/ /usr/local/modsecurity/
 COPY --from=builder /opt/ModSecurity/modsecurity.conf-recommended /etc/modsecurity.d/modsecurity.conf
 COPY --from=builder /opt/ModSecurity/unicode.mapping /etc/modsecurity.d/unicode.mapping
 COPY src/etc/modsecurity.d/*.conf /etc/modsecurity.d/
-COPY src/set_permission.sh /
+COPY src/set_permissions.sh /
 COPY nginx/conf.d/*.conf /etc/nginx/conf.d/
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/docker-entrypoint.sh /docker-entrypoint.d/40-modsec-entrypoint.sh
 
-RUN chmod 700 /docker-entrypoint.d/40-modsec-entrypoint.sh /set_permission.sh
+RUN chmod 700 /docker-entrypoint.d/40-modsec-entrypoint.sh /set_permissions.sh
 
 RUN touch /var/run/nginx.pid
-RUN /set_permission.sh && rm /set_permission.sh
+RUN /set_permissions.sh && rm /set_permissions.sh
 
 RUN ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
