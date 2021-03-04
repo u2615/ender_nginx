@@ -120,10 +120,10 @@ ENV ACCESSLOG=/var/log/nginx/access.log \
     SSL_PORT=443 \
     TIMEOUT=60s \
     WORKER_CONNECTIONS=1024 \
-    LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
-#PROXY_SSL_CERT_KEY=/etc/nginx/ssl/server.key \
-#PROXY_SSL_CERT=/etc/nginx/ssl/server.crt \
-#PROXY_SSL_VERIFY=off
+    LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib \
+    SSL_VERIFY=on
+#SSL_CERT_KEY=/etc/nginx/ssl/server.key \
+#SSL_CERT=/etc/nginx/ssl/server.crt \
 
 # Bring in gettext so we can get `envsubst`, then throw
 # the rest away. To do this, we need to install `gettext`
